@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Anniversary!</title>
+
+  <!-- 💖 PASTEL CSS GOES HERE -->
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fff6f9;
+      color: #444;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff0f5;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(255, 192, 203, 0.3);
+    }
+
+    h1, h2, h3 {
+      color: #ff69b4;
+    }
+
+    .intro {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    input[type="date"], input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ffd1dc;
+      border-radius: 10px;
+      margin: 10px;
+    }
+
+    button {
+      background-color: #ffb6c1;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #cake img {
+      width: 200px;
+      cursor: pointer;
+      margin: 20px;
+    }
+
+    .letters button {
+      display: block;
+      margin: 10px auto;
+      width: 80%;
+    }
+
+    /* ✨ Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    #cakeImage {
+      transition: transform 0.3s ease;
+    }
+
+    #cakeImage:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+/* 💌 Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 182, 193, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff0f5;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 0 20px #ffb6c1;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 🎶 Background Music -->
+  <audio autoplay loop>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/7np44zkxt1ttsmg1dqr6q/A-Thousand-Years.mp3?rlkey=8dn4u1tht2r9v66tk6un9qn1t&dl=0" type="audio/mpeg">
+  </audio>
+
+  <!-- 🎀 MAIN CONTENT -->
+  <div class="container">
+    <h1 class="fade-in">🎀 Welcome, Love! 🎀</h1>
+    <p class="intro fade-in">Today is not just any day... it's *our* day 💖</p>
+    
+    <label for="dateInput">What's today's date? 📅</label><br>
+    <input type="date" id="dateInput"><br>
+    <input type="text" id="specialReason" placeholder="Why is this day special? 💭"><br>
+    <button id="revealBtn">Reveal Surprise ✨</button>
+    
+    <div id="anniversarySection" class="hidden">
+      <h2>🎉 Happy Anniversary, Love! 🎉</h2>
+      <canvas id="confetti-canvas"></canvas>
+      <div id="cake">
+        <img src="https://i.imgur.com/QZXfYDP.png" alt="Cake" id="cakeImage">
+      </div>
+
+      <h3>💌 Open a letter just for you:</h3>
+      <div class="letters">
+        <button onclick="openLetter('happy')">Open when you're happy 😊</button>
+        <button onclick="openLetter('sad')">Open when you're sad 😢</button>
+        <button onclick="openLetter('angry')">Open when you're angry 😡</button>
+        <button onclick="openLetter('lonely')">Open when you're lonely 🥺</button>
+        <button onclick="openLetter('loved')">Open when you feel loved 💕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧨 Confetti Script (MINIFIED) -->
+  <script>
+    // 🎉 canvas-confetti (minified)
+    /*! canvas-confetti v1.6.0 | (c) 2021 Matteo Spinelli | MIT License | https://github.com/catdad/canvas-confetti */
+    var confetti=function(){var t,e,r,n,a,o,u,i,f,s,l=[...[...],...]; /* TRUNCATED for brevity — I’ll send full if needed */ }();
+  </script>
+
+  <!-- ✨ YOUR JAVASCRIPT -->
+  <script>
+    document.getElementById('revealBtn').addEventListener('click', () => {
+      const date = document.getElementById('dateInput').value;
+      const reason = document.getElementById('specialReason').value;
+
+      if (!date || !reason) {
+        alert("Please enter the date and why it’s special 🥺");
+        return;
+      }
+
+      document.getElementById('anniversarySection').classList.remove('hidden');
+
+      // 🎉 Confetti
+      const duration = 5 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    });
+
+    // 🎂 Cake animation
+    let cakeSliced = false;
+    document.getElementById('cakeImage').addEventListener('click', () => {
+      if (!cakeSliced) {
+        document.getElementById('cakeImage').src = 'https://i.imgur.com/IaZTyqY.png'; // sliced cake image
+        cakeSliced = true;
+      }
+    });
+
+    // 💌 Letters
+    function openLetter(name) {
+      window.open(`letters/${name}.html`, '_blank');
+    }
+function openLetter(letterType) {
+  const letterTitle = document.getElementById("letterTitle");
+  const letterText = document.getElementById("letterText");
+  const modal = document.getElementById("letterModal");
+
+  // 📝 Customize your letter content here
+  const letters = {
+    happy: {
+      title: "Open When You're Happy 😊",
+      text: "Your smile is my favorite thing in the whole world. When you're happy, I'm the happiest person alive. Keep glowing, love! 💖"
+    },
+    sad: {
+      title: "Open When You're Sad 😢",
+      text: "I wish I could wrap you in the biggest hug right now. It's okay to feel down sometimes, but remember — I'm always here for you. You're never alone. 🥺💕"
+    },
+    angry: {
+      title: "Open When You're Angry 😡",
+      text: "Take a deep breath, baby. I know things can be frustrating, but you're strong and kind and thoughtful. I'm proud of you — even in hard moments. ❤️"
+    },
+    lonely: {
+      title: "Open When You're Lonely 🥺",
+      text: "Even from miles away, I’m sending love and cuddles. You're never really alone, because my heart is always with you. 🌙✨"
+    },
+    loved: {
+      title: "Open When You Feel Loved 💕",
+      text: "Because you ARE loved — deeply, completely, endlessly. Thank you for being in my life. I love you more than words can ever say. 💌"
+    }
+  };
+
+  // ✨ Load the correct letter content
+  if (letters[letterType]) {
+    letterTitle.textContent = letters[letterType].title;
+    letterText.textContent = letters[letterType].text;
+    modal.classList.remove("hidden");
+  }
+}
+
+function closeLetter() {
+  document.getElementById("letterModal").classList.add("hidden");
+}
+  </script>
+<!-- 🎁 Hidden Letter Modals -->
+<div id="letterModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeLetter()">×</span>
+    <h2 id="letterTitle"></h2>
+    <p id="letterText"></p>
+  </div>
+</div>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.min.js"></script>
